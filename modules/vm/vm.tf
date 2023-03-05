@@ -13,7 +13,6 @@ resource "proxmox_vm_qemu" "test_server" {
   clone = var.clone
   cipassword = var.password
   ciuser = var.user
-  agent = 1
   os_type = "cloud-init"
   cores = var.cores
   sockets = 1
