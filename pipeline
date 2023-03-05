@@ -1,0 +1,56 @@
+pipeline {
+agent any
+tools {
+  terraform 'terraform'
+}
+options { ansiColor('xterm') } 
+ stages { 
+   stage ('Checkout Repo') { 
+     steps { 
+       cleanWs()
+       sh  'https://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@github.com/Galexo11/terraform.git'
+      }
+      } 
+
+stage ('Terraform version') { 
+  steps {
+   sh '''
+    terraform --version
+   ''' 
+    }
+    }
+    
+  stage ('Terraform init') { 
+  steps {
+   sh '''
+   cd terraform/
+   terraform init
+   ''' 
+   }
+   }
+   
+  stage ('Terraform plan') { 
+  steps {
+   sh '''
+   cd terraform/
+   terraform plan -out=tfplan.out
+   terraform show -json tfplan.out
+   ''' 
+   }
+   }
+   
+ stage ('Terraform apply') { 
+  steps {
+   sh '''
+   cd terraform/
+   terraform apply --auto-approve
+   ''' 
+   }
+        post { 
+        always { 
+            cleanWs()
+         }
+        }
+       }
+  }
+}
