@@ -8,7 +8,7 @@ options { ansiColor('xterm') }
    stage ('Checkout Repo') { 
      steps { 
        cleanWs()
-       sh  'https://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@github.com/Galexo11/terraform.git'
+       sh  'git clone https://github.com/Galexo11/terraform.git'
       }
       } 
 
