@@ -3,14 +3,14 @@ agent any
 tools {
   terraform 'terraform'
 }
-options { ansiColor('xterm') } 
- stages { 
-   stage ('Checkout Repo') { 
-     steps { 
-       cleanWs()
-       sh  'git clone https://github.com/Galexo11/terraform.git'
-      }
-      } 
+
+stages { 
+  stage ('Checkout Repo') { 
+    steps { 
+      cleanWs()
+      sh  'git clone https://github.com/Galexo11/terraform.git'
+    }
+    } 
 
 stage ('Terraform version') { 
   steps {
